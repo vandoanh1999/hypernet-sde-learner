@@ -1,0 +1,20 @@
+HYPERNET-SDE-LEARNER — COMMERCIAL LICENSE (SAMPLE EULA)
+
+Copyright (c) vandoanh1999
+
+1. Grant of License
+Seller grants to Buyer a single, non-transferable, exclusive license to use the software "hypernet-sde-learner" for Buyer's internal business purposes. Redistribution, sublicensing, reselling, or sharing of source code or binaries is prohibited.
+
+2. Payment & Ownership
+Upon full payment, Seller grants Buyer the license above. Seller retains ownership of the original source code and intellectual property unless otherwise explicitly agreed in a written contract.
+
+3. No Warranty
+Software provided "AS IS", without warranty of any kind.
+
+4. Liability
+Seller's liability is limited to the amount paid by Buyer for the license.
+
+5. Governing Law
+This agreement is governed by the laws of the Seller's jurisdiction.
+
+--- End of sample EULA ---
