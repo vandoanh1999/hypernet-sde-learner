@@ -211,7 +211,8 @@ class HypernetSDEContinualLearner(nn.Module):
                 distance = torch.norm(current_proto - prev_proto)
                 task_separation_loss += torch.exp(-distance)
         beta_nll = min(1.0, 0.01 + 0.99 * epoch / 300)
-        total_loss = (recon_loss + beta_nll * nll_loss + 0.5 * replay_loss + 0.3 * task_separation_loss)
+        # Tăng cường đáng kể trọng số của các thành phần chống quên lãng
+        total_loss = (recon_loss + beta_nll * nll_loss + 2.0 * replay_loss + 1.5 * task_separation_loss)
         loss_components = {
             'reconstruction': recon_loss.item(),
             'nll_loss': nll_loss.item(),
