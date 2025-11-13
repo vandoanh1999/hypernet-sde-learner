@@ -36,10 +36,16 @@ class DynamicLinear(nn.Module):
 
     def forward(self, x: torch.Tensor, weights: torch.Tensor, bias: Optional[torch.Tensor] = None) -> torch.Tensor:
         if weights.dim() == 3:
+            # Reshape input for batched matrix multiplication
+            x_reshaped = x.unsqueeze(1)
             if bias is not None:
-                return torch.baddbmm(bias.unsqueeze(1), x, weights.transpose(1,2))
+                # Perform batched add-matrix-multiply
+                res = torch.baddbmm(bias.unsqueeze(1), x_reshaped, weights.transpose(1, 2))
             else:
-                return torch.bmm(x, weights.transpose(1,2))
+                # Perform batched matrix-multiply
+                res = torch.bmm(x_reshaped, weights.transpose(1, 2))
+            # Squeeze the output to remove the temporary dimension
+            return res.squeeze(1)
         else:
             return F.linear(x, weights, bias)
 
