@@ -2,4 +2,9 @@ torch>=2.0.0
 torchsde
 matplotlib
 numpy
-
+fastapi
+uvicorn
+qdrant-client
+redis
+celery
+httpx
