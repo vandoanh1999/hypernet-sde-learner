@@ -36,10 +36,16 @@ class DynamicLinear(nn.Module):
 
     def forward(self, x: torch.Tensor, weights: torch.Tensor, bias: Optional[torch.Tensor] = None) -> torch.Tensor:
         if weights.dim() == 3:
+            # Reshape input for batched matrix multiplication
+            x_reshaped = x.unsqueeze(1)
             if bias is not None:
-                return torch.baddbmm(bias.unsqueeze(1), x, weights.transpose(1,2))
+                # Perform batched add-matrix-multiply
+                res = torch.baddbmm(bias.unsqueeze(1), x_reshaped, weights.transpose(1, 2))
             else:
-                return torch.bmm(x, weights.transpose(1,2))
+                # Perform batched matrix-multiply
+                res = torch.bmm(x_reshaped, weights.transpose(1, 2))
+            # Squeeze the output to remove the temporary dimension
+            return res.squeeze(1)
         else:
             return F.linear(x, weights, bias)
 
@@ -205,7 +211,8 @@ class HypernetSDEContinualLearner(nn.Module):
                 distance = torch.norm(current_proto - prev_proto)
                 task_separation_loss += torch.exp(-distance)
         beta_nll = min(1.0, 0.01 + 0.99 * epoch / 300)
-        total_loss = (recon_loss + beta_nll * nll_loss + 0.5 * replay_loss + 0.3 * task_separation_loss)
+        # Tăng cường đáng kể trọng số của các thành phần chống quên lãng
+        total_loss = (recon_loss + beta_nll * nll_loss + 2.0 * replay_loss + 1.5 * task_separation_loss)
         loss_components = {
             'reconstruction': recon_loss.item(),
             'nll_loss': nll_loss.item(),
