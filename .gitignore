@@ -1,0 +1,4 @@
+# Build artifacts
+paper/main.aux
+paper/main.log
+benchmark_output.log

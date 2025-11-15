@@ -4,6 +4,8 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0+-orange.svg)](https://pytorch.org/get-started/locally/)
+![Tests](https://github.com/vandoanh1999/hypernet-sde-learner/workflows/tests/badge.svg)
+![Code Coverage](https://codecov.io/gh/vandoanh1999/hypernet-sde-learner/branch/main/graph/badge.svg)
 
 `Hypernet-SDE-Flow` là một kiến trúc AI thử nghiệm (experimental) được thiết kế để giải quyết một trong những thách thức lớn nhất của Trí Tuệ Nhân Tạo hiện đại: **Sự Quên Lãng Thảm Khốc (Catastrophic Forgetting)**.
 
@@ -62,6 +64,13 @@ $$Z \xrightarrow{f} U \sim \mathcal{N}(0, I)$$
 
 * **Tính năng:** Exact Likelihood Computation, Complex Distribution Modeling.
 * **Lợi ích:** Đảm bảo biểu diễn tiềm ẩn có cấu trúc toán học chặt chẽ, cải thiện chất lượng tái tạo và sinh dữ liệu.
+
+---
+
+# Quick start - 3 dòng để chạy
+git clone https://github.com/vandoanh1999/hypernet-sde-learner.git
+cd hypernet-sde-learner && pip install -r requirements.txt
+python benchmark_compare.py --tasks 5 --epochs 100
 
 ---
 
