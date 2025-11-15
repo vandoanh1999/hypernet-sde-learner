@@ -90,7 +90,6 @@ After training on all 5 tasks sequentially, we evaluate the performance of both 
 \centering
 \caption{Final Reconstruction MSE Matrix. Shows the MSE on task $T_j$ after the model has finished training on task $T_i$.}
 \label{tab:mse_matrix}
-\begin{subtable}{1\textwidth}
 \centering
 \caption{Baseline MLP}
 \begin{tabular}{lccccc}
@@ -104,9 +103,7 @@ Task 3     & 0.0069  & 0.0114  & 0.0008  & 0.0000  & -       \\
 \textbf{Task 4} & \textbf{0.0060}  & 0.0046  & 0.0011  & 0.0005  & 0.0000  \\
 \bottomrule
 \end{tabular}
-\end{subtable}
 \vspace{1em}
-\begin{subtable}{1\textwidth}
 \centering
 \caption{Hypernet-SDE-Flow}
 \begin{tabular}{lccccc}
@@ -120,7 +117,6 @@ Task 3     & 1.4147  & 0.3772  & 0.9962  & 0.0016  & -       \\
 \textbf{Task 4} & \textbf{0.3905}  & 0.5956  & 0.6441  & 0.0926  & 0.0087  \\
 \bottomrule
 \end{tabular}
-\end{subtable}
 \end{table}
 
 The results clearly indicate that the Hypernet-SDE-Flow model suffers from severe catastrophic forgetting. For instance, the MSE on Task 0 balloons from 0.0083 to 0.3905 after training on subsequent tasks. In contrast, the baseline MLP's performance on Task 0 remains remarkably stable.

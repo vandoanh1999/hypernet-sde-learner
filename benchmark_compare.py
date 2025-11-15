@@ -94,7 +94,7 @@ class NeuralSDE(nn.Module):
     Đây là SDE chuẩn Ito: dZ = f(t, Z)dt + g(t, Z)dW_t
     """
     sde_type = "ito"
-    noise_type = "general"
+    noise_type = "diagonal"
 
     def __init__(self, dim: int, hidden_dim: int = 64):
         super().__init__()
@@ -219,7 +219,7 @@ class HypernetSDEContinualLearner(nn.Module):
         self.flow = ManifoldNormalizingFlow(latent_dim, num_layers=4)
         self.neural_sde = NeuralSDE(latent_dim)
         
-        self.decoder_sde = NeuralSDE(latent_dim, num_layers=2)
+        self.decoder_sde = NeuralSDE(latent_dim)
         self.decoder_1 = DynamicLinear()
         self.hypernet_dec1 = HyperNetwork(task_emb_dim, latent_dim, hidden_dim)
         self.decoder_2 = nn.Linear(hidden_dim, input_dim)
@@ -463,7 +463,7 @@ def main_benchmark():
     plt.ylabel('MSE Loss on Task 0', fontsize=12)
     plt.xlabel('Task $T_i$ vừa học xong', fontsize=12)
     plt.xticks(task_axis, [f'Học T{i}' for i in task_axis])
-        plt.legend(fontsize=12)
+    plt.legend(fontsize=12)
     plt.grid(True, linestyle='--', alpha=0.6)
     plt.yscale('log') # Dùng thang log để thấy rõ sự chênh lệch
     
