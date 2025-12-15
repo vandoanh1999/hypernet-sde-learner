@@ -1,10 +1,13 @@
-torch>=2.0.0
+# Core ML Libraries
+torch
+numpy
 torchsde
 matplotlib
-numpy
+
+# API Framework
 fastapi
-uvicorn
-qdrant-client
-redis
-celery
+uvicorn[standard]
+
+# Testing
+pytest
 httpx
